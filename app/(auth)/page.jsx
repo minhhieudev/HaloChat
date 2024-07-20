@@ -1,9 +1,8 @@
-import Form from '@components/form'
-import React from 'react'
+import Form from "@components/Form"
 
 const Login = () => {
   return (
-    <Form type={'login'}/>
+    <Form type="login" />
   )
 }
 

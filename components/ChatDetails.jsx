@@ -6,8 +6,8 @@ import { AddPhotoAlternate } from "@mui/icons-material";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CldUploadButton } from "next-cloudinary";
-//import MessageBox from "./MessageBox";
-//import { pusherClient } from "@lib/pusher";
+import MessageBox from "./MessageBox";
+import { pusherClient } from "@lib/pusher";
 
 const ChatDetails = ({ chatId }) => {
   const [loading, setLoading] = useState(true);
@@ -82,25 +82,25 @@ const ChatDetails = ({ chatId }) => {
     }
   };
 
-  // useEffect(() => {
-  //   pusherClient.subscribe(chatId);
+  useEffect(() => {
+    pusherClient.subscribe(chatId);
 
-  //   const handleMessage = async (newMessage) => {
-  //     setChat((prevChat) => {
-  //       return {
-  //         ...prevChat,
-  //         messages: [...prevChat.messages, newMessage],
-  //       };
-  //     });
-  //   };
+    const handleMessage = async (newMessage) => {
+      setChat((prevChat) => {
+        return {
+          ...prevChat,
+          messages: [...prevChat.messages, newMessage],
+        };
+      });
+    };
 
-  //   pusherClient.bind("new-message", handleMessage);
+    pusherClient.bind("new-message", handleMessage);
 
-  //   return () => {
-  //     pusherClient.unsubscribe(chatId);
-  //     pusherClient.unbind("new-message", handleMessage);
-  //   };
-  // }, [chatId]);
+    return () => {
+      pusherClient.unsubscribe(chatId);
+      pusherClient.unbind("new-message", handleMessage);
+    };
+  }, [chatId]);
 
   /* Scrolling down to the bottom when having the new message */
 
@@ -150,13 +150,13 @@ const ChatDetails = ({ chatId }) => {
         </div>
 
         <div className="chat-body">
-          {/* {chat?.messages?.map((message, index) => (
+          {chat?.messages?.map((message, index) => (
             <MessageBox
               key={index}
               message={message}
               currentUser={currentUser}
             />
-          ))} */}
+          ))}
           <div ref={bottomRef} />
         </div>
 
@@ -165,7 +165,7 @@ const ChatDetails = ({ chatId }) => {
             <CldUploadButton
               options={{ maxFiles: 1 }}
               onUpload={sendPhoto}
-              uploadPreset="upecg01j"
+              uploadPreset="e0rggou2"
             >
               <AddPhotoAlternate
                 sx={{
