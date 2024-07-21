@@ -18,7 +18,6 @@ const ChatDetails = ({ chatId }) => {
   const currentUser = session?.user;
 
   const [text, setText] = useState("");
-  const [isSending, setIsSending] = useState(false); 
 
   const getChatDetails = async () => {
     try {
@@ -44,8 +43,6 @@ const ChatDetails = ({ chatId }) => {
   }, [currentUser, chatId]);
 
   const sendText = async () => {
-    if (isSending || text.trim() === "") return; 
-    setIsSending(true);
     try {
       const res = await fetch("/api/messages", {
         method: "POST",
@@ -64,8 +61,6 @@ const ChatDetails = ({ chatId }) => {
       }
     } catch (err) {
       console.log(err);
-    } finally {
-      setIsSending(false);
     }
   };
 
@@ -116,12 +111,6 @@ const ChatDetails = ({ chatId }) => {
       behavior: "smooth",
     });
   }, [chat?.messages]);
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      sendText();
-    }
-  };
 
   return loading ? (
     <Loader />
@@ -194,7 +183,6 @@ const ChatDetails = ({ chatId }) => {
               className="input-field"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              onKeyPress={handleKeyPress}
               required
             />
           </div>
