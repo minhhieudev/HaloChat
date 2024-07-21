@@ -144,7 +144,7 @@
 
 /* ChatDetails */
 .chat-details {
-  @apply flex flex-col bg-white rounded-2xl h-full;
+  @apply flex flex-col bg-white rounded-2xl h-full shadow-xl;
 }
 
 /* Chat Header */
