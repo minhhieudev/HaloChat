@@ -86,7 +86,7 @@ const Contacts = () => {
         <div className="contact-list">
           <p className="text-body-bold">Select or Deselect</p>
 
-           <div className="max-h-full overflow-y-scroll ">
+           <div className="max-h-full overflow-y-scroll custom-scrollbar">
            <div className="flex flex-col gap-5 ">
               {contacts.map((user, index) => (
                 <div
@@ -118,7 +118,7 @@ const Contacts = () => {
                 <p className="text-body-bold">Group Chat Name</p>
                 <input
                   placeholder="Enter group chat name..."
-                  className="input-group-name"
+                  className="input-group-name shadow-md"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -128,7 +128,7 @@ const Contacts = () => {
                 <p className="text-body-bold">Members</p>
                 <div className="flex flex-wrap gap-3">
                   {selectedContacts.map((contact, index) => (
-                    <p className="selected-contact" key={index}>
+                    <p className="selected-contact shadow-sm" key={index}>
                       {contact.username}
                     </p>
                   ))}
