@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import Loader from "./Loader";
 import { AddPhotoAlternate } from "@mui/icons-material";
@@ -8,6 +6,9 @@ import Link from "next/link";
 import { CldUploadButton } from "next-cloudinary";
 import MessageBox from "./MessageBox";
 import { pusherClient } from "@lib/pusher";
+import dynamic from 'next/dynamic';
+
+const EmojiPicker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 
 const ChatDetails = ({ chatId }) => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,8 @@ const ChatDetails = ({ chatId }) => {
   const currentUser = session?.user;
 
   const [text, setText] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const emojiPickerRef = useRef(null);
 
   const getChatDetails = async () => {
     try {
@@ -102,8 +105,6 @@ const ChatDetails = ({ chatId }) => {
     };
   }, [chatId]);
 
-  /* Scrolling down to the bottom when having the new message */
-
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -111,6 +112,24 @@ const ChatDetails = ({ chatId }) => {
       behavior: "smooth",
     });
   }, [chat?.messages]);
+
+  const handleEmojiClick = (emojiData) => {
+    setText((prevText) => prevText + emojiData.emoji);
+  };
+
+  // Handle click outside the emoji picker to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
+        setShowEmojiPicker(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return loading ? (
     <Loader />
@@ -161,7 +180,7 @@ const ChatDetails = ({ chatId }) => {
         </div>
 
         <div className="send-message">
-          <div className="prepare-message">
+          <div className="prepare-message relative">
             <CldUploadButton
               options={{ maxFiles: 1 }}
               onUpload={sendPhoto}
@@ -176,7 +195,9 @@ const ChatDetails = ({ chatId }) => {
                 }}
               />
             </CldUploadButton>
-
+            <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+              😊
+            </button>
             <input
               type="text"
               placeholder="Write a message..."
@@ -185,6 +206,15 @@ const ChatDetails = ({ chatId }) => {
               onChange={(e) => setText(e.target.value)}
               required
             />
+
+            {showEmojiPicker && (
+              <div className='absolute left-1 bottom-full p-2 z-50 ' ref={emojiPickerRef}>
+                <EmojiPicker
+                  onEmojiClick={handleEmojiClick}
+                  disableAutoFocus={true}
+                />
+              </div>
+            )}
           </div>
 
           <div onClick={sendText}>
