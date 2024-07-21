@@ -86,28 +86,30 @@ const Contacts = () => {
         <div className="contact-list">
           <p className="text-body-bold">Select or Deselect</p>
 
-          <div className="flex flex-col flex-1 gap-5 overflow-y-scroll custom-scrollbar">
-            {contacts.map((user, index) => (
-              <div
-                key={index}
-                className="contact"
-                onClick={() => handleSelect(user)}
-              >
-                {selectedContacts.find((item) => item === user) ? (
-                  <CheckCircle sx={{ color: "red" }} />
-                ) : (
-                  <RadioButtonUnchecked />
-                )}
-                <img
-                  src={user.profileImage || "/assets/person.jpg"}
-                  alt="profile"
-                  className="profilePhoto"
-                />
-                <p className="text-base-bold">{user.username}</p>
-              </div>
-            ))}
+           <div className="max-h-full overflow-y-scroll ">
+           <div className="flex flex-col gap-5 ">
+              {contacts.map((user, index) => (
+                <div
+                  key={index}
+                  className="contact"
+                  onClick={() => handleSelect(user)}
+                >
+                  {selectedContacts.find((item) => item === user) ? (
+                    <CheckCircle sx={{ color: "red" }} />
+                  ) : (
+                    <RadioButtonUnchecked />
+                  )}
+                  <img
+                    src={user.profileImage || "/assets/person.jpg"}
+                    alt="profile"
+                    className="profilePhoto"
+                  />
+                  <p className="text-base-bold">{user.username}</p>
+                </div>
+              ))}
+            </div>
+           </div>
           </div>
-        </div>
 
         <div className="create-chat">
           {isGroup && (

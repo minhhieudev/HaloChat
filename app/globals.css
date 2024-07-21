@@ -45,7 +45,7 @@
 
 /* Main Container */
 .main-container {
-  @apply h-screen flex justify-between gap-5 px-10 py-3 max-lg:gap-8;
+  @apply flex justify-between gap-5 px-10 py-3 max-lg:gap-8 h-[90vh];
 }
 
 /* Top Bar */
@@ -80,12 +80,12 @@
 }
 
 .btn {
-  @apply flex items-center justify-center rounded-xl p-3 bg-gradient-to-l from-blue-1 to-blue-3 text-body-bold text-white;
+  @apply flex items-center max-sm:text-small-bold justify-center rounded-xl p-3 bg-gradient-to-l from-blue-1 to-blue-3 text-body-bold text-white ;
 }
 
 /* Chat List */
 .chat-list {
-  @apply h-screen flex flex-col gap-5 pb-20;
+  @apply  flex flex-col gap-5 pb-2 h-full max-sm:gap-3 max-sm:h-[93%];
 }
 
 .input-search {
@@ -115,19 +115,19 @@
 
 /* Contacts */
 .create-chat-container {
-  @apply flex flex-col gap-5;
+  @apply flex flex-col gap-5 h-full pb-2 max-sm:gap-3;
 }
 
 .contact-bar {
-  @apply flex gap-7 items-start max-lg:flex-col;
+  @apply flex gap-7 items-start max-lg:flex-col flex-1 max-sm:gap-3;
 }
 
 .contact-list {
-  @apply h-screen w-1/2 max-lg:w-full flex flex-col gap-5 bg-white rounded-3xl py-5 px-8 mb-20;
+  @apply w-1/2 max-lg:w-full flex flex-col gap-5 bg-white rounded-3xl py-5 pl-8 pr-5 h-[80.5vh] max-sm:h-[68.5vh];
 }
 
 .contact {
-  @apply flex gap-3 items-center cursor-pointer;
+  @apply flex gap-3 items-center cursor-pointer ;
 }
 
 .create-chat {
@@ -144,7 +144,7 @@
 
 /* ChatDetails */
 .chat-details {
-  @apply h-screen flex flex-col bg-white rounded-2xl;
+  @apply flex flex-col bg-white rounded-2xl h-full;
 }
 
 /* Chat Header */
@@ -183,7 +183,7 @@
 
 /* Message Input */
 .send-message {
-  @apply w-full flex items-center justify-between px-7 py-3 rounded-3xl cursor-pointer bg-white;
+  @apply w-full flex items-center justify-between px-7 py-3 rounded-3xl cursor-pointer bg-white ;
 }
 
 .prepare-message {

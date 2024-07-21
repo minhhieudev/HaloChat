@@ -115,7 +115,7 @@ const ChatDetails = ({ chatId }) => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="pb-20">
+    <div className="h-[99%]">
       <div className="chat-details">
         <div className="chat-header">
           {chat?.isGroup ? (
