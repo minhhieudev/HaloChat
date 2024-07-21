@@ -77,7 +77,7 @@ const GroupInfo = () => {
     <div className="profile-page">
       <h1 className="text-heading3-bold">Edit Group Info</h1>
 
-      <form className="edit-profile" onSubmit={handleSubmit(updateGroupChat)}>
+      <form className="edit-profile max-sm:p-7" onSubmit={handleSubmit(updateGroupChat)}>
         <div className="input">
           <input
             {...register("name", {
@@ -91,7 +91,7 @@ const GroupInfo = () => {
         </div>
         {error?.name && <p className="text-red-500">{error.name.message}</p>}
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-around">
           <img
             src={watch("groupPhoto") || "/assets/group.png"}
             alt="profile"
@@ -106,10 +106,32 @@ const GroupInfo = () => {
           </CldUploadButton>
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          {chat?.members?.map((member, index) => (
-            <p className="selected-contact" key={index}>{member.username}</p>
-          ))}
+        <div className="max-sm:max-h-[190px] overflow-y-scroll custom-scrollbar">
+          <div className="flex flex-wrap gap-3">
+            {chat?.members?.map((member, index) => (
+              <p className="selected-contact" key={index}>{member.username}</p>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {chat?.members?.map((member, index) => (
+              <p className="selected-contact" key={index}>{member.username}</p>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {chat?.members?.map((member, index) => (
+              <p className="selected-contact" key={index}>{member.username}</p>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {chat?.members?.map((member, index) => (
+              <p className="selected-contact" key={index}>{member.username}</p>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3 ">
+            {chat?.members?.map((member, index) => (
+              <p className="selected-contact" key={index}>{member.username}</p>
+            ))}
+          </div>
         </div>
 
         <button className="btn" type="submit">

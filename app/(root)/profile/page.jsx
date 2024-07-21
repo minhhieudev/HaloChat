@@ -97,7 +97,7 @@ const Profile = () => {
             onUpload={uploadPhoto}
             uploadPreset="e0rggou2"
           >
-            <p className="text-body-bold">Upload new photo</p>
+            <p className="text-body-bold ml-3">Upload new photo</p>
           </CldUploadButton>
         </div>
 
