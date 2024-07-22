@@ -112,26 +112,6 @@ const GroupInfo = () => {
               <p className="selected-contact" key={index}>{member.username}</p>
             ))}
           </div>
-          <div className="flex flex-wrap gap-3">
-            {chat?.members?.map((member, index) => (
-              <p className="selected-contact" key={index}>{member.username}</p>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {chat?.members?.map((member, index) => (
-              <p className="selected-contact" key={index}>{member.username}</p>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {chat?.members?.map((member, index) => (
-              <p className="selected-contact" key={index}>{member.username}</p>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-3 ">
-            {chat?.members?.map((member, index) => (
-              <p className="selected-contact" key={index}>{member.username}</p>
-            ))}
-          </div>
         </div>
 
         <button className="btn" type="submit">

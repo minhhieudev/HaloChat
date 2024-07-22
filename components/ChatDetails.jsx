@@ -148,9 +148,9 @@ const ChatDetails = ({ chatId }) => {
               </Link>
 
               <div className="text">
-                <p>
-                  {chat?.name} &#160; &#183; &#160; {chat?.members?.length}{" "}
-                  members
+                <p className="text-green-700">
+                  {chat?.name} {"("}{chat?.members?.length}{" "}
+                  members{")"}
                 </p>
               </div>
             </>
@@ -208,7 +208,7 @@ const ChatDetails = ({ chatId }) => {
             />
 
             {showEmojiPicker && (
-              <div className='absolute left-1 bottom-full p-2 z-50 ' ref={emojiPickerRef}>
+              <div className='absolute right-0 bottom-full p-2 z-50 ' ref={emojiPickerRef}>
                 <EmojiPicker
                   onEmojiClick={handleEmojiClick}
                   disableAutoFocus={true}
